@@ -127,7 +127,7 @@ app.post('/api/consultation', async (req, res) => {
         try {
             const { data: emailData, error } = await resend.emails.send({
                 from: 'Tuned Society <onboarding@resend.dev>',
-                to: 'namgyalgurung1@gmail.com',
+                to: 'tunedsociety7@gmail.com',
                 subject: `New Build Consultation: ${data.vehicle.brand} ${data.vehicle.model}`,
                 html: `
                     <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
