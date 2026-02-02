@@ -11,7 +11,15 @@ const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: ['https://tuned-society.onrender.com', 'http://localhost:5173', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.get('/', (req, res) => {
+    res.send('Tuned Society API is running!');
+});
 app.use(express.json());
 
 // Email Configuration
