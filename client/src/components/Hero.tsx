@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
                 </h1>
 
                 <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed">
-                    India's premier automotive consulting platform. Whether you're building a track weapon, a stance show-stopper, or the perfect daily driver — <span className="text-white font-semibold">we engineer your dream.</span>
+                    India's premier automotive consulting platform. Whether you're building a track weapon, a stance show-stopper, or the perfect daily driver <span className="text-white font-semibold">we engineer your dream.</span>
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
