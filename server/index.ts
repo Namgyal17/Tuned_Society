@@ -25,11 +25,14 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
+    tls: {
+        rejectUnauthorized: false
+    },
     // Force IPv4 to avoid Cloud IPv6 timeouts
     family: 4,
     logger: true,
     debug: true
-} as nodemailer.TransportOptions);
+});
 
 // --- ROUTES ---
 
