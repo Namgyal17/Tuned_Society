@@ -120,7 +120,7 @@ app.post('/api/consultation', async (req, res) => {
         }
 
         try {
-            await resend.emails.send({
+            const { data, error } = await resend.emails.send({
                 from: 'Tuned Society <onboarding@resend.dev>',
                 to: 'tunedsociety7@gmail.com',
                 subject: `New Build Consultation: ${data.vehicle.brand} ${data.vehicle.model}`,
@@ -153,14 +153,20 @@ app.post('/api/consultation', async (req, res) => {
                 `
             });
 
-            console.log('Email sent successfully via Resend');
+            if (error) {
+                console.error('Resend API Error:', error);
+                // Return 500 so frontend knows it failed
+                return res.status(500).json({ success: false, error: 'Resend Error: ' + error.message });
+            }
+
+            console.log('Email sent successfully via Resend:', data);
             res.json({
                 success: true,
                 message: 'Consultation received and email sent',
                 garagePhone: garagePhone
             });
         } catch (emailError: any) {
-            console.error('Error sending email:', emailError);
+            console.error('Unexpected error sending email:', emailError);
             res.status(500).json({ success: false, error: 'Failed to send email: ' + emailError.message });
         }
     } catch (error) {
