@@ -32,7 +32,7 @@ const transporter = nodemailer.createTransport({
     family: 4,
     logger: true,
     debug: true
-});
+} as nodemailer.TransportOptions);
 
 // --- ROUTES ---
 
