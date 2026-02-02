@@ -20,18 +20,16 @@ app.use(express.json());
 
 // Email Configuration
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // Use STARTTLS
+    service: 'gmail',
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
-    connectionTimeout: 10000, // Fail after 10 seconds
-    tls: {
-        rejectUnauthorized: false
-    }
-});
+    // Force IPv4 to avoid Cloud IPv6 timeouts
+    family: 4,
+    logger: true,
+    debug: true
+} as nodemailer.TransportOptions);
 
 // --- ROUTES ---
 
