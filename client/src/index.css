@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary font-primary antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-8 py-3 font-heading font-semibold uppercase tracking-wider rounded transition-all duration-300 relative overflow-hidden;
+  }
+
+  .btn-primary {
+    @apply bg-accent-red text-white shadow-md hover:bg-accent-red-hover hover:-translate-y-0.5 hover:shadow-glow;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-white border-2 border-white hover:bg-white hover:text-black hover:-translate-y-0.5;
+  }
+
+  .card {
+    @apply bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a] rounded-xl p-8 border border-white/5 transition-all duration-300 relative overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:border-accent-red/30;
+  }
+
+  .container-custom {
+    @apply max-w-[1400px] mx-auto px-8;
+  }
+}

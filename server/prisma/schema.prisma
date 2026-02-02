@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model VehicleType {
+  id        String     @id @default(uuid())
+  name      String     @unique // "car", "bike"
+  regions   Region[]
+}
+
+model Region {
+  id            String      @id @default(uuid())
+  name          String      // "Indian Brands", "JDM", etc.
+  slug          String      // "indian", "jdm"
+  vehicleTypeId String
+  vehicleType   VehicleType @relation(fields: [vehicleTypeId], references: [id])
+  brands        Brand[]
+}
+
+model Brand {
+  id       String   @id @default(uuid())
+  name     String
+  slug     String   @unique
+  regionId String
+  region   Region   @relation(fields: [regionId], references: [id])
+  models   Model[]
+}
+
+model Model {
+  id      String @id @default(uuid())
+  name    String
+  brandId String
+  brand   Brand  @relation(fields: [brandId], references: [id])
+}
+
+model BuildGoalCategory {
+  id          String      @id @default(uuid())
+  slug        String      @unique // "beginner", "performance"
+  name        String
+  description String
+  level       String?
+  warning     String?
+  options     BuildOption[]
+}
+
+model BuildOption {
+  id          String            @id @default(uuid())
+  slug        String            @unique // "daily-comfort"
+  name        String
+  description String
+  tags        String[]
+  warning     Boolean           @default(false)
+  categoryId  String
+  category    BuildGoalCategory @relation(fields: [categoryId], references: [id])
+}
+
+model Garage {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  name        String
+  location    String
+  area        String
+  specialties String[]
+  services    String[]
+  rating      Float
+  experience  String
+  expertise   String
+  description String
+  phone       String?
+  instagram   String?
+  email       String?
+  address     String?
+  timing      String?
+}
+
+model UpgradeCategory {
+  id            String              @id @default(uuid())
+  slug          String              @unique // "air-fuel-system"
+  name          String
+  description   String
+  subCategories UpgradeSubCategory[]
+}
+
+model UpgradeSubCategory {
+  id         String          @id @default(uuid())
+  slug       String          @unique // "air-fuel"
+  name       String
+  categoryId String
+  category   UpgradeCategory @relation(fields: [categoryId], references: [id])
+  items      String[]
+}
