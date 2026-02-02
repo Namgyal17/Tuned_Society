@@ -75,7 +75,8 @@ const ConsultationModal: React.FC = () => {
     const prevStep = () => setCurrentStep(prev => prev - 1);
     const close = () => { setIsOpen(false); setCurrentStep(1); setSuccessData(null); };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
         setIsSubmitting(true);
         try {
             // Use environment variable or fallback to localhost
@@ -563,6 +564,7 @@ const ConsultationModal: React.FC = () => {
                                 <div className="flex justify-end pt-6 gap-4 border-t border-white/5 mt-6">
                                     <button onClick={prevStep} className="btn btn-secondary">Back</button>
                                     <button
+                                        type="button"
                                         onClick={handleSubmit}
                                         disabled={!formData.userName || !formData.userPhone || isSubmitting}
                                         className="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none min-w-[140px] flex justify-center"
