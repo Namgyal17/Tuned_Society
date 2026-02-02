@@ -54,9 +54,18 @@ export function useConsultationData() {
                     fetch(`${API_URL}/api/garages`)
                 ]);
 
-                if (!vehiclesRes.ok || !goalsRes.ok || !garagesRes.ok) throw new Error('Failed to fetch data');
+                if (!vehiclesRes.ok || !goalsRes.ok || !garagesRes.ok) {
+                    console.error("API Error - Status:", {
+                        vehicles: vehiclesRes.status,
+                        goals: goalsRes.status,
+                        garages: garagesRes.status
+                    });
+                    throw new Error('Failed to fetch data');
+                }
 
-                setVehicles(await vehiclesRes.json());
+                const vehiclesData = await vehiclesRes.json();
+                console.log("Vehicles Fetched:", vehiclesData);
+                setVehicles(vehiclesData);
                 setBuildGoals(await goalsRes.json());
 
                 const fetchedGarages = await garagesRes.json();
