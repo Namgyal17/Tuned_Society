@@ -125,7 +125,7 @@ app.post('/api/consultation', async (req, res) => {
         }
 
         try {
-            const { data, error } = await resend.emails.send({
+            const { data: emailData, error } = await resend.emails.send({
                 from: 'Tuned Society <onboarding@resend.dev>',
                 to: 'tunedsociety7@gmail.com',
                 subject: `New Build Consultation: ${data.vehicle.brand} ${data.vehicle.model}`,
@@ -164,7 +164,7 @@ app.post('/api/consultation', async (req, res) => {
                 return res.status(500).json({ success: false, error: 'Resend Error: ' + error.message });
             }
 
-            console.log('Email sent successfully via Resend:', data);
+            console.log('Email sent successfully via Resend:', emailData);
             res.json({
                 success: true,
                 message: 'Consultation received and email sent',
