@@ -320,8 +320,8 @@ const CONSULTATION_DATA = {
         },
         {
             id: "wheelerzhub-gangtok",
-            slug: "wheelerzhub-gangtok",
-            name: "Wheelerzhub",
+            slug: "wheelerz-hub",
+            name: "Wheelerz Hub",
             location: "Gangtok, Sikkim",
             area: "M.P Golai, Tadong",
             address: "Near Maskey Petrol Pump, M.P Golai, Tadong, Gangtok, Sikkim 737102",
@@ -333,6 +333,35 @@ const CONSULTATION_DATA = {
             timing: "10:00 AM - 7:30 PM",
             contact: { phone: "+91-8250058722" },
             description: "Wheelerz Hub is an enthusiast-driven automotive garage known for clean workmanship. A trusted Verified Garage Partner of Tuned Society."
+        },
+        {
+            id: "carbonize",
+            slug: "carbonize",
+            name: "CARBONIZE",
+            location: "Siliguri, West Bengal",
+            area: "Punjabipara",
+            specialties: ["Carbon Fibre", "Body Panels", "Interior Trims"],
+            services: ["Carbon Fibre Body Panels", "Interior Trims", "Custom Carbon Parts"],
+            rating: 4.7,
+            experience: "Verified Partner",
+            expertise: "Expert",
+            contact: { phone: "+91 8967041414" },
+            address: "Punjabipara near Bright Academy, Siliguri",
+            description: "Premium carbon fibre specialists dealing in body panels, interior trims, and custom 1-of-1 parts."
+        },
+        {
+            id: "boost-nation",
+            slug: "boost-nation",
+            name: "Boost Nation",
+            location: "Kolkata, West Bengal",
+            specialties: ["Performance Tuning", "Custom Builds", "Automotive Content"],
+            services: ["Performance Tuning", "Custom Builds", "Automotive Content"],
+            rating: 4.4,
+            experience: "Verified Partner",
+            expertise: "Expert",
+            contact: { phone: "+91 9810858224" },
+            address: "Kolkata, West Bengal",
+            description: "Boost Nation is a community-driven automotive brand for enthusiasts, focused on modern tuning culture, performance, and innovation."
         }
     ],
     upgrades: [

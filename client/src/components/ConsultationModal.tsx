@@ -93,7 +93,13 @@ const ConsultationModal: React.FC = () => {
 
             if (response.ok && data.success) {
                 // Instead of closing, show success step
-                setSuccessData({ phone: data.garagePhone });
+                // Fail-safe: If backend doesn't return phone, find it in local garages array
+                let phone = data.garagePhone;
+                if (!phone && formData.selectedGarage) {
+                    const selected = garages.find(g => g.slug === formData.selectedGarage);
+                    phone = selected?.phone;
+                }
+                setSuccessData({ phone: phone });
                 setCurrentStep(9); // Move to success step
             } else {
                 throw new Error(data.error || 'Failed to submit consultation');
