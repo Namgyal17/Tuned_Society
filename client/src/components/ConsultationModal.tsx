@@ -560,10 +560,14 @@ const ConsultationModal: React.FC = () => {
                                         <input
                                             type="tel"
                                             className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white placeholder-white/20 focus:border-accent-red focus:bg-white/10 focus:outline-none transition-all"
-                                            placeholder="+91 XXXXX XXXXX"
+                                            placeholder="10-digit Mobile Number"
                                             value={formData.userPhone}
-                                            onChange={(e) => setFormData({ ...formData, userPhone: e.target.value })}
+                                            onChange={(e) => {
+                                                const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                                                setFormData({ ...formData, userPhone: value });
+                                            }}
                                         />
+                                        <p className="text-[10px] text-white/30 mt-1">Enter exactly 10 digits (e.g. 9876543210)</p>
                                     </div>
                                 </div>
 
@@ -572,7 +576,7 @@ const ConsultationModal: React.FC = () => {
                                     <button
                                         type="button"
                                         onClick={handleSubmit}
-                                        disabled={!formData.userName || !formData.userPhone || isSubmitting}
+                                        disabled={!formData.userName || formData.userPhone.length !== 10 || isSubmitting}
                                         className="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none min-w-[140px] flex justify-center"
                                     >
                                         {isSubmitting ? (
