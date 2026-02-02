@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 dotenv.config();
 
@@ -13,26 +13,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
+// Initialize Resend with API Key
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+app.use(express.json());
+
 app.get('/', (req, res) => {
     res.send('Tuned Society API is running!');
 });
-app.use(express.json());
-
-// Email Configuration
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    },
-    tls: {
-        rejectUnauthorized: false
-    },
-    // Force IPv4 to avoid Cloud IPv6 timeouts
-    family: 4,
-    logger: true,
-    debug: true
-} as nodemailer.TransportOptions);
 
 // --- ROUTES ---
 
@@ -89,8 +77,6 @@ app.get('/api/garages', async (req, res) => {
 const ConsultationSchema = z.object({
     vehicle: z.object({
         type: z.string(),
-        // Frontend might send region, or might not depending on vehicle type logic.
-        // We'll accept it if present.
         region: z.string().optional(),
         brand: z.string(),
         model: z.string()
@@ -117,39 +103,6 @@ app.post('/api/consultation', async (req, res) => {
         const data = ConsultationSchema.parse(req.body);
         console.log('Consultation Received:', data);
 
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: 'tunedsociety7@gmail.com',
-            subject: `New Build Consultation: ${data.vehicle.brand} ${data.vehicle.model}`,
-            html: `
-                <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-                    <h2 style="color: #dc2626;">New Build Consultation Request</h2>
-                    <p><strong>Client:</strong> ${data.userName} (${data.userPhone})</p>
-                    <p><strong>Location:</strong> ${data.location}</p>
-                    <p><strong>Timeline:</strong> ${data.preferences.timeline}</p>
-                    
-                    <hr style="border: 1px solid #eee; margin: 20px 0;">
-                    
-                    <h3>Vehicle Details</h3>
-                    <p><strong>Type:</strong> ${data.vehicle.type}</p>
-                    <p><strong>Region:</strong> ${data.vehicle.region || 'N/A'}</p>
-                    <p><strong>Brand:</strong> ${data.vehicle.brand}</p>
-                    <p><strong>Model:</strong> ${data.vehicle.model}</p>
-                    
-                    <h3>Build Requirements</h3>
-                    <p><strong>Goal:</strong> ${data.buildGoal.category} - ${data.buildGoal.build}</p>
-                    <p><strong>Budget:</strong> ${data.budget}</p>
-                    <p><strong>Usage:</strong> ${data.usage}</p>
-                    
-                    <h3>Selected Garage</h3>
-                    <p><strong>Garage Slug:</strong> ${data.selectedGarage || 'Not Selected'}</p>
-                    
-                    <h3>Additional Notes</h3>
-                    <p>${data.additionalNotes || 'None'}</p>
-                </div>
-            `
-        };
-
         // Fetch selected garage details to get phone number
         let garagePhone = null;
         if (data.selectedGarage) {
@@ -167,8 +120,40 @@ app.post('/api/consultation', async (req, res) => {
         }
 
         try {
-            await transporter.sendMail(mailOptions);
-            console.log('Email sent successfully');
+            await resend.emails.send({
+                from: 'Tuned Society <onboarding@resend.dev>',
+                to: 'tunedsociety7@gmail.com',
+                subject: `New Build Consultation: ${data.vehicle.brand} ${data.vehicle.model}`,
+                html: `
+                    <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+                        <h2 style="color: #dc2626;">New Build Consultation Request</h2>
+                        <p><strong>Client:</strong> ${data.userName} (${data.userPhone})</p>
+                        <p><strong>Location:</strong> ${data.location}</p>
+                        <p><strong>Timeline:</strong> ${data.preferences.timeline}</p>
+                        
+                        <hr style="border: 1px solid #eee; margin: 20px 0;">
+                        
+                        <h3>Vehicle Details</h3>
+                        <p><strong>Type:</strong> ${data.vehicle.type}</p>
+                        <p><strong>Region:</strong> ${data.vehicle.region || 'N/A'}</p>
+                        <p><strong>Brand:</strong> ${data.vehicle.brand}</p>
+                        <p><strong>Model:</strong> ${data.vehicle.model}</p>
+                        
+                        <h3>Build Requirements</h3>
+                        <p><strong>Goal:</strong> ${data.buildGoal.category} - ${data.buildGoal.build}</p>
+                        <p><strong>Budget:</strong> ${data.budget}</p>
+                        <p><strong>Usage:</strong> ${data.usage}</p>
+                        
+                        <h3>Selected Garage</h3>
+                        <p><strong>Garage Slug:</strong> ${data.selectedGarage || 'Not Selected'}</p>
+                        
+                        <h3>Additional Notes</h3>
+                        <p>${data.additionalNotes || 'None'}</p>
+                    </div>
+                `
+            });
+
+            console.log('Email sent successfully via Resend');
             res.json({
                 success: true,
                 message: 'Consultation received and email sent',
