@@ -21,7 +21,7 @@ function LandingPage() {
       <Hero />
       <About />
       <Services />
-      <Consultation />
+      {/* <Consultation /> */}
       <JoinTheCult />
     </>
   );
