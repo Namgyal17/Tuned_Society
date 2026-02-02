@@ -52,10 +52,10 @@ const About: React.FC = () => {
                         </div>
 
                         <div className="flex gap-8 pt-4">
-                            <div>
+                            {/* <div>
                                 <h3 className="text-3xl font-heading font-bold text-white">500+</h3>
                                 <p className="text-sm text-text-muted uppercase tracking-wider">Builds Consulted</p>
-                            </div>
+                            </div> */}
                             {/* <div>
                                 <h3 className="text-3xl font-heading font-bold text-white">50+</h3>
                                 <p className="text-sm text-text-muted uppercase tracking-wider">Verified Partners</p>
