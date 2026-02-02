@@ -499,6 +499,18 @@ const ConsultationModal: React.FC = () => {
                                                                     <div>
                                                                         <h5 className="font-bold text-white/50 uppercase tracking-wider text-xs mb-1">Contact</h5>
                                                                         <p className="text-white/80">{garage.phone || "Coming soon"}</p>
+                                                                        {garage.phone && (
+                                                                            <a
+                                                                                href={`https://wa.me/${garage.phone.replace(/\D/g, '').length === 10 ? '91' + garage.phone.replace(/\D/g, '') : garage.phone.replace(/\D/g, '')}?text=Hi, I found your garage on Tuned Society.`}
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer"
+                                                                                onClick={(e) => e.stopPropagation()}
+                                                                                className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] text-xs font-bold rounded-md border border-[#25D366]/20 transition-colors"
+                                                                            >
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.54 1.973.835 3.187.835h3.181c3.182 0 5.768-2.587 5.769-5.767 0-3.18-2.586-5.766-5.768-5.766zm-9.031 5.766c0-4.971 4.029-9 9-9s9 4.029 9 9-4.029 9-9 9c-1.686 0-3.256-.474-4.595-1.291l-4.405 1.291 1.258-4.437c-.779-1.284-1.258-2.779-1.258-4.563zm18 0c0-4.962-4.038-9-9-9s-9 4.038-9 9c0 1.984.629 3.821 1.705 5.32l-1.096 4.148 4.306-1.129c1.378.885 3.003 1.402 4.085 1.402 4.962 0 9-4.038 9-9z" /></svg>
+                                                                                Chat
+                                                                            </a>
+                                                                        )}
                                                                     </div>
                                                                 </div>
                                                             </div>
