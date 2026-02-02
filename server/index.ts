@@ -106,17 +106,22 @@ app.post('/api/consultation', async (req, res) => {
         // Fetch selected garage details to get phone number
         let garagePhone = null;
         if (data.selectedGarage) {
-            console.log(`Looking up garage with slug: ${data.selectedGarage}`);
+            const searchSlug = data.selectedGarage.trim();
+            console.log(`[DEBUG] Looking up garage with slug: '${searchSlug}'`);
+
             const garage = await prisma.garage.findUnique({
-                where: { slug: data.selectedGarage }
+                where: { slug: searchSlug }
             });
-            console.log('Garage found:', garage ? 'Yes' : 'No');
+
             if (garage) {
-                console.log('Garage Phone:', garage.phone);
+                console.log(`[DEBUG] Found garage: ${garage.name}, Phone: ${garage.phone}`);
                 garagePhone = garage.phone;
+            } else {
+                console.log(`[DEBUG] Garage NOT FOUND for slug: '${searchSlug}'`);
+                // Fallback: Check if it matches by name loosely? No, keep it strict but logged.
             }
         } else {
-            console.log('No garage selected in data');
+            console.log('[DEBUG] No garage selected in data');
         }
 
         try {
