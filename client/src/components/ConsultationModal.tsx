@@ -78,7 +78,9 @@ const ConsultationModal: React.FC = () => {
     const handleSubmit = async () => {
         setIsSubmitting(true);
         try {
-            const response = await fetch('http://localhost:3000/api/consultation', {
+            // Use environment variable or fallback to localhost
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+            const response = await fetch(`${API_URL}/api/consultation`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

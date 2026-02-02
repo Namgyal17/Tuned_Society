@@ -45,10 +45,13 @@ export function useConsultationData() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // Use environment variable or fallback to localhost
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
                 const [vehiclesRes, goalsRes, garagesRes] = await Promise.all([
-                    fetch('http://localhost:3000/api/vehicles'),
-                    fetch('http://localhost:3000/api/build-goals'),
-                    fetch('http://localhost:3000/api/garages')
+                    fetch(`${API_URL}/api/vehicles`),
+                    fetch(`${API_URL}/api/build-goals`),
+                    fetch(`${API_URL}/api/garages`)
                 ]);
 
                 if (!vehiclesRes.ok || !goalsRes.ok || !garagesRes.ok) throw new Error('Failed to fetch data');
