@@ -357,6 +357,20 @@ const CONSULTATION_DATA = {
 };
 
 async function main() {
+    console.log('Cleaning up existing data...');
+    // Delete in order of dependency (Models -> Brands -> Regions)
+    await prisma.model.deleteMany({});
+    await prisma.brand.deleteMany({});
+    await prisma.region.deleteMany({});
+
+    await prisma.buildOption.deleteMany({});
+    await prisma.buildGoalCategory.deleteMany({});
+
+    await prisma.garage.deleteMany({});
+
+    await prisma.upgradeSubCategory.deleteMany({});
+    await prisma.upgradeCategory.deleteMany({});
+
     console.log('Seeding...');
 
     // Vehicles

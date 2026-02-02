@@ -5,7 +5,7 @@ const ConsultationModal: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
     const [successData, setSuccessData] = useState<{ phone: string | null } | null>(null);
-    const { vehicles, buildGoals, garages, loading } = useConsultationData();
+    const { vehicles, buildGoals, garages, loading, error } = useConsultationData();
 
     const [formData, setFormData] = useState({
         vehicle: { type: '', region: '', brand: '', model: '' },
@@ -163,6 +163,21 @@ const ConsultationModal: React.FC = () => {
                     <div className="flex flex-col items-center justify-center py-24 space-y-4">
                         <div className="w-12 h-12 border-2 border-accent-red border-t-transparent rounded-full animate-spin"></div>
                         <p className="text-white/50 animate-pulse">Loading configuration data...</p>
+                    </div>
+                ) : error ? (
+                    <div className="flex flex-col items-center justify-center py-24 space-y-4 text-center">
+                        <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/20 text-red-500">
+                            !
+                        </div>
+                        <h3 className="text-xl font-bold text-white">Connection Error</h3>
+                        <p className="text-white/50 max-w-sm">{error}</p>
+                        <p className="text-xs text-white/30">Make sure the backend server is running.</p>
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm text-white transition-colors"
+                        >
+                            Retry Connection
+                        </button>
                     </div>
                 ) : (
                     <div className="min-h-[400px] flex flex-col">
