@@ -94,3 +94,4 @@ model UpgradeSubCategory {
   category   UpgradeCategory @relation(fields: [categoryId], references: [id])
   items      String[]
 }
+
