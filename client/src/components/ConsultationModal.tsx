@@ -426,20 +426,11 @@ const ConsultationModal: React.FC = () => {
                                                                 <img
                                                                     src={garage.imageUrl}
                                                                     alt={garage.name}
-                                                                    className="w-full h-full object-contain"
+                                                                    className={`w-full h-full ${garage.slug === 'h20-car-wash' ? 'object-cover scale-125' : 'object-contain'}`}
                                                                     onError={(e) => {
                                                                         e.currentTarget.style.display = 'none';
                                                                         e.currentTarget.parentElement?.classList.remove('overflow-hidden');
-                                                                        // Show fallback initials by making the sibling text visible (hacky but works if structure allows)
-                                                                        // Better approach: State managed image error, but inside map is tricky.
-                                                                        // Simple CSS trick: If img hides, background shows.
-                                                                        // We can inject initials as a background pseudo-element or just use state.
-                                                                        // Since we can't easily use state for list items without sub-components, let's use a simpler DOM manipulation or conditional rendering based on a small helper component.
-                                                                        // For now, let's just accept that if it fails, it might be blank unless we make a component.
-                                                                        // Let's refactor this card into a GarageCard component for better state management.
-
-                                                                        // Actually, simplest fix for now without full refactor:
-                                                                        // If image errors, replace the parent's innerHTML with initials.
+                                                                        // Show fallback initials
                                                                         if (e.currentTarget.parentElement) {
                                                                             e.currentTarget.parentElement.innerText = garage.name.substring(0, 2).toUpperCase();
                                                                         }

@@ -54,6 +54,50 @@ async function main() {
             email: 'info@boostnation.in',
             address: 'Kolkata, West Bengal',
             timing: '10:00 AM - 8:00 PM'
+        },
+        {
+            slug: 'zerospot',
+            name: 'Zerospot',
+            location: 'Siliguri, West Bengal',
+            area: '2.5 mile',
+            specialties: [
+                'Premium Car & Bike Detailing',
+                'Paint Correction & Surface Refinement',
+                'Ceramic & Graphene Coating',
+                'Paint Protection Film (PPF) & Wraps',
+                'Luxury Interior Detailing & Restoration',
+                'Bodyshop Repairs, Denting & Painting',
+                'Insurance & Non-Insurance Claims',
+                'Mechanical Diagnostics & Maintenance',
+                'Underbody Protection & Anti-Rust Coating'
+            ],
+            services: ['Detailing', 'Bodyshop', 'Maintenance'],
+            rating: 4.6,
+            experience: 'Premium',
+            expertise: 'Detailing & Bodyshop',
+            description: 'A one-stop premium automotive destination offering detailing, bodyshop, and mechanical services under one roof.',
+            phone: '7908173067',
+            instagram: '@zerospot_siliguri',
+            email: 'contact@zerospot.in',
+            address: 'Opposite Nayan residency behind osl tata motors Opposite Vega Circle mall 2.5 mile, Siliguri, West Bengal 734008',
+            timing: '10:00 AM – 7:00 PM'
+        },
+        {
+            slug: 'h20-car-wash',
+            name: 'H20 CAR WASH AND DETAILING STUDIO',
+            location: 'Gangtok, Sikkim',
+            area: 'Lower Bhojoghari',
+            specialties: ['Car Wash', 'Detailing', 'Automobile Accessories'],
+            services: ['Exterior Cleaning', 'Interior Cleaning', 'Accessories'],
+            rating: 5.0,
+            experience: 'Professional',
+            expertise: 'Cleaning & Detailing',
+            description: 'Professional exterior and interior cleaning with safe, quality care. Quality accessories to enhance comfort, safety, and style.',
+            phone: '6297851372',
+            instagram: '',
+            email: '',
+            address: 'Lower Bhojoghari, below Shiv Mandir, Gangtok, Sikkim 737103',
+            timing: '9:00 AM - 8:00 PM'
         }
     ];
 

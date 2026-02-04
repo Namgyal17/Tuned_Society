@@ -4,7 +4,7 @@ import garageBg from '../assets/garage-bg.jpg';
 const Consultation: React.FC = () => {
     // Placeholder partners for the ticker
     const partners = [
-        "WHEELERZ HUB", "BOOST NATION", "CARBONIZE"
+        "WHEELERZ HUB", "BOOST NATION", "CARBONIZE", "ZEROSPOT"
     ];
 
     return (

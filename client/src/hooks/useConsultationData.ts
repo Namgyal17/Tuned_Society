@@ -127,6 +127,45 @@ export function useConsultationData() {
                 });
 
 
+                // 4. Zerospot (New Addition)
+                customGarages.push({
+                    id: 'zerospot-1',
+                    name: 'Zerospot',
+                    slug: 'zerospot',
+                    location: 'Siliguri, West Bengal',
+                    rating: 4.6,
+                    description: 'A one-stop premium automotive destination offering detailing, bodyshop, and mechanical services under one roof. Tailored solutions, meticulous execution, and uncompromising standards.',
+                    specialties: [
+                        'Premium Car & Bike Detailing',
+                        'Paint Correction & Surface Refinement',
+                        'Ceramic & Graphene Coating',
+                        'Paint Protection Film (PPF) & Wraps',
+                        'Luxury Interior Detailing & Restoration',
+                        'Bodyshop Repairs, Denting & Painting',
+                        'Insurance & Non-Insurance Claims',
+                        'Mechanical Diagnostics & Maintenance',
+                        'Underbody Protection & Anti-Rust Coating'
+                    ],
+                    address: 'Opposite Nayan residency behind osl tata motors Opposite Vega Circle mall 2.5 mile, Siliguri, West Bengal 734008',
+                    timing: '10:00 AM – 7:00 PM',
+                    phone: '+91 7908173067',
+                    imageUrl: '/images/garages/zerospot.png'
+                });
+
+                // 5. H20 Car Wash (New Addition)
+                customGarages.push({
+                    id: 'h20-car-wash',
+                    name: 'H20 CAR WASH AND DETAILING STUDIO',
+                    slug: 'h20-car-wash',
+                    location: 'Gangtok, Sikkim',
+                    rating: 5.0,
+                    description: 'Professional exterior and interior cleaning with safe, quality care. Quality accessories to enhance comfort, safety, and style.',
+                    specialties: ['Car Wash', 'Detailing', 'Automobile Accessories', 'Exterior Cleaning', 'Interior Cleaning'],
+                    address: 'Lower Bhojoghari, below Shiv Mandir, Gangtok, Sikkim 737103',
+                    timing: '9:00 AM - 8:00 PM',
+                    phone: '+91 6297851372',
+                    imageUrl: '/images/garages/h20-car-wash.png'
+                });
 
                 // Combine custom garages with any other garages fetched from DB
                 // Filter out duplicates based on slug if necessary

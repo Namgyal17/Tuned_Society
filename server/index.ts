@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -6,6 +7,8 @@ import { z } from 'zod';
 import { Resend } from 'resend';
 
 dotenv.config();
+
+console.log('RESEND_API_KEY loaded:', process.env.RESEND_API_KEY ? 'Yes (starts with ' + process.env.RESEND_API_KEY.substring(0, 5) + '...)' : 'No');
 
 const app = express();
 const prisma = new PrismaClient();
@@ -125,7 +128,9 @@ app.post('/api/consultation', async (req, res) => {
         }
 
         try {
-            const { data: emailData, error } = await resend.emails.send({
+            console.log('Sending email via Resend SDK...');
+
+            const { data: emailResult, error: resendError } = await resend.emails.send({
                 from: 'Tuned Society <onboarding@resend.dev>',
                 to: 'tunedsociety7@gmail.com',
                 subject: `New Build Consultation: ${data.vehicle.brand} ${data.vehicle.model}`,
@@ -158,13 +163,12 @@ app.post('/api/consultation', async (req, res) => {
                 `
             });
 
-            if (error) {
-                console.error('Resend API Error:', error);
-                // Return 500 so frontend knows it failed
-                return res.status(500).json({ success: false, error: 'Resend Error: ' + error.message });
+            if (resendError) {
+                console.error('Resend API Error:', resendError);
+                return res.status(500).json({ success: false, error: 'Resend Error: ' + resendError.message });
             }
 
-            console.log('Email sent successfully via Resend:', emailData);
+            console.log('Email sent successfully via SDK:', emailResult);
             res.json({
                 success: true,
                 message: 'Consultation received and email sent',
