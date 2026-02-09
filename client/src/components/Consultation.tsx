@@ -2,9 +2,13 @@ import React from 'react';
 import garageBg from '../assets/garage-bg.jpg';
 
 const Consultation: React.FC = () => {
-    // Placeholder partners for the ticker
+    // Verified Garage Partners
     const partners = [
-        "WHEELERZ HUB", "BOOST NATION", "CARBONIZE", "ZEROSPOT"
+        { name: "Wheelerz Hub", logo: "/images/garages/wheelerz-hub.png" },
+        { name: "Boost Nation", logo: "/images/garages/boost-nation.png" },
+        { name: "Carbonize", logo: "/images/garages/carbonize.png" },
+        { name: "Zerospot", logo: "/images/garages/zerospot.png" },
+        { name: "H20 Car Wash", logo: "/images/garages/h20-car-wash.png" }
     ];
 
     return (
@@ -55,18 +59,22 @@ const Consultation: React.FC = () => {
                     <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-scroll">
                         {partners.map((partner, index) => (
                             <li key={index}>
-                                <span className="text-xl md:text-2xl font-display font-bold text-white/30 whitespace-nowrap uppercase tracking-widest hover:text-white/80 hover:shadow-glow transition-all duration-300 cursor-default select-none">
-                                    {partner}
-                                </span>
+                                <img
+                                    src={partner.logo}
+                                    alt={partner.name}
+                                    className="h-12 w-auto object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+                                />
                             </li>
                         ))}
                     </ul>
                     <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-scroll" aria-hidden="true">
                         {partners.map((partner, index) => (
                             <li key={`clone-${index}`}>
-                                <span className="text-xl md:text-2xl font-display font-bold text-white/30 whitespace-nowrap uppercase tracking-widest hover:text-white/80 hover:shadow-glow transition-all duration-300 cursor-default select-none">
-                                    {partner}
-                                </span>
+                                <img
+                                    src={partner.logo}
+                                    alt={partner.name}
+                                    className="h-12 w-auto object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300"
+                                />
                             </li>
                         ))}
                     </ul>

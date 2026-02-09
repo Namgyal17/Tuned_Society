@@ -76,6 +76,7 @@ model Garage {
   email       String?
   address     String?
   timing      String?
+  imageUrl    String?
 }
 
 model UpgradeCategory {

@@ -19,7 +19,8 @@ async function main() {
             instagram: '@wheelerzhub',
             email: 'wheelerzhub@gmail.com',
             address: 'Near Maskey Petrol Pump, Tadong',
-            timing: '10:00 AM - 7:30 PM'
+            timing: '10:00 AM - 7:30 PM',
+            imageUrl: '/images/garages/wheelerz-hub.png'
         },
         {
             slug: 'carbonize',
@@ -36,7 +37,8 @@ async function main() {
             instagram: '@carbonize_india',
             email: 'contact@carbonize.in',
             address: 'Punjabipara near Bright Academy, Siliguri',
-            timing: '10:00 AM - 8:00 PM'
+            timing: '10:00 AM - 8:00 PM',
+            imageUrl: '/images/garages/carbonize.png'
         },
         {
             slug: 'boost-nation',
@@ -53,7 +55,8 @@ async function main() {
             instagram: '@boostnation',
             email: 'info@boostnation.in',
             address: 'Kolkata, West Bengal',
-            timing: '10:00 AM - 8:00 PM'
+            timing: '10:00 AM - 8:00 PM',
+            imageUrl: '/images/garages/boost-nation.png'
         },
         {
             slug: 'zerospot',
@@ -80,7 +83,8 @@ async function main() {
             instagram: '@zerospot_siliguri',
             email: 'contact@zerospot.in',
             address: 'Opposite Nayan residency behind osl tata motors Opposite Vega Circle mall 2.5 mile, Siliguri, West Bengal 734008',
-            timing: '10:00 AM – 7:00 PM'
+            timing: '10:00 AM – 7:00 PM',
+            imageUrl: '/images/garages/zerospot.png'
         },
         {
             slug: 'h20-car-wash',
@@ -97,14 +101,30 @@ async function main() {
             instagram: '',
             email: '',
             address: 'Lower Bhojoghari, below Shiv Mandir, Gangtok, Sikkim 737103',
-            timing: '9:00 AM - 8:00 PM'
+            timing: '9:00 AM - 8:00 PM',
+            imageUrl: '/images/garages/h20-car-wash.png'
         }
     ];
+
+    // Delete any garages NOT in this list
+    const allowedSlugs = garages.map(g => g.slug);
+    const deleteResult = await prisma.garage.deleteMany({
+        where: {
+            slug: {
+                notIn: allowedSlugs
+            }
+        }
+    });
+    console.log(`Deleted ${deleteResult.count} garages that were not in the allowed list.`);
 
     for (const g of garages) {
         const garage = await prisma.garage.upsert({
             where: { slug: g.slug },
-            update: { phone: g.phone, location: g.location }, // Ensure phone is up to date
+            update: {
+                phone: g.phone,
+                location: g.location,
+                imageUrl: g.imageUrl
+            }, // Ensure crucial fields are up to date
             create: g,
         });
         console.log(`Upserted garage: ${garage.name}`);
