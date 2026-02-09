@@ -446,7 +446,7 @@ async function main() {
     for (const garage of CONSULTATION_DATA.garages) {
         await prisma.garage.create({
             data: {
-                slug: garage.id,
+                slug: garage.slug,
                 name: garage.name,
                 location: garage.location,
                 area: garage.area || "",
