@@ -5,8 +5,26 @@ import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import { Resend } from 'resend';
+import path from 'path';
+import fs from 'fs';
 
-dotenv.config();
+import { fileURLToPath } from 'url';
+
+// Define __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Explicitly load .env from current directory
+const envPath = path.resolve(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+    console.log(`Loading .env from: ${envPath}`);
+    const result = dotenv.config({ path: envPath });
+    if (result.error) {
+        console.error('Error loading .env:', result.error);
+    }
+} else {
+    console.warn(`Warning: .env file not found at ${envPath}`);
+}
 
 console.log('RESEND_API_KEY loaded:', process.env.RESEND_API_KEY ? 'Yes (starts with ' + process.env.RESEND_API_KEY.substring(0, 5) + '...)' : 'No');
 

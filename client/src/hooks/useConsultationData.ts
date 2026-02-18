@@ -46,7 +46,7 @@ export function useConsultationData() {
         const fetchData = async () => {
             try {
                 // Use environment variable or fallback to localhost
-                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:10000';
                 console.log("Connecting to Backend at:", API_URL);
 
                 const [vehiclesRes, goalsRes, garagesRes] = await Promise.all([
