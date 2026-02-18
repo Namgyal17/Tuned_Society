@@ -310,6 +310,26 @@ const CONSULTATION_DATA = {
             address: 'Lower Bhojoghari, below Shiv Mandir, Gangtok, Sikkim 737103',
             timing: '9:00 AM - 8:00 PM',
             imageUrl: '/images/garages/h20-car-wash.png'
+        },
+        {
+            slug: 'balaji-motors',
+            name: 'Balaji Motors',
+            location: 'Siliguri, West Bengal',
+            area: '2nd Mile, Sevoke Rd',
+            specialties: ['Luxury Car Repair', '4x4 Modification', 'Ceramic & PPF', 'Audio Upgrade'],
+            services: ['Interior Customization', 'Paint Job', 'Car Accessories', 'Body Kits', 'Performance Parts'],
+            rating: 4.8,
+            experience: 'Premium',
+            expertise: 'Multi Brand',
+            description: 'Specialists in Luxury Car Repair, 4x4 Modification, Interior Customization, and Premium Detailing.',
+            contact: {
+                phone: '9800055551',
+                instagram: '@balajimotorsslg',
+                email: ''
+            },
+            address: 'Checkpost, 2nd Mile, Sevoke Rd, Siliguri',
+            timing: '10:00 AM - 7:00 PM',
+            imageUrl: '/images/garages/balajimotors.png'
         }
     ],
     upgrades: [
