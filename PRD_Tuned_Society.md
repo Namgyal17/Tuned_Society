@@ -74,22 +74,54 @@
 
 ---
 
-## 5. Technical Architecture & Constraints
+## 5. Typical User Journey & Frontend Flow
 
-### 5.1 Technology Stack
+The frontend UX/UI specifically cascades through a designed pipeline to progressively filter information for the user before connecting them to a service provider. This is separate from the Database storage model, functioning as a strict UX funnel.
+
+### 🌊 User Flow Diagram
+```mermaid
+flowchart TD
+    %% Define Styling
+    classDef start fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef action fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#991b1b;
+    classDef endNode fill:#25D366,stroke:#fff,stroke-width:2px,color:#fff;
+
+    A([Start: Open Consultation Modal]):::start --> B{Select Vehicle Type}
+    B -->|Car / Bike| C[Select Region]
+    C -->|e.g. JDM, Euro| D[Select Brand]
+    D -->|e.g. Toyota| E[Select Model]
+    E -->|e.g. Supra| F[Define Build Goal]
+    F -->|Performance / Aesthetics| G[Enter Logistics & Location]
+    G -->|Timeline / City| H[Select Local Garage]
+    H -->|Match by Location & Specialty| I[Enter Contact Details]
+    I --> J([Route to WhatsApp / Email Lead]):::endNode
+```
+
+### Flow Breakdown:
+1. **Discovery & Vehicle Selection**: The user chooses their exact vehicle hierarchy (Type ➔ Region ➔ Brand ➔ Model) guaranteeing accurate parts compatibility.
+2. **Strategy**: The user selects their specific Build Goal option, accepting any difficulty level warnings.
+3. **Logistics**: The user enters their physical City and expected timeframe.
+4. **Fulfillment**: Based on the location, they select a capable Garage.
+5. **Connection**: The user triggers an email via the platform and optionally launches their WhatsApp client.
+
+---
+
+## 6. Technical Architecture & Constraints
+
+### 6.1 Technology Stack
 - **Frontend App**: React 19, TypeScript, Vite, Tailwind CSS 4, React Router DOM v7.
 - **Backend API**: Node.js, Express.js (v5), TypeScript.
 - **Data Layer**: PostgreSQL, Prisma ORM.
 - **Validation**: Zod (for strong runtime validation of API requests).
 - **Communication**: Resend / Nodemailer.
 
-### 5.2 API Interaction Patterns (RESTful Design)
+### 6.2 API Interaction Patterns (RESTful Design)
 - `GET /api/vehicles/hierarchy`: Returns the nested tree of Type->Region->Brand->Model for UI cascading dropdowns.
 - `GET /api/builds/goals`: Returns localized build paths with warnings.
 - `GET /api/garages`: Returns the paginated directory. Supports queries `?specialty=dyno&location=mumbai`.
 - `POST /api/consultation`: Accepts the Consultation form data, validates via Zod, and triggers the email pipeline via Resend.
 
-### 5.3 Non-Functional Requirements (NFRs)
+### 6.3 Non-Functional Requirements (NFRs)
 - **Performance**: Frontend bundle must be minimized. Vite optimizations should yield a First Contentful Paint (FCP) under 1.5s.
 - **Responsive Design**: Mobile-first UI is mandatory. Enthusiasts frequently browse from mobile devices while in the garage or at meets.
 - **SEO Optimization**: Use descriptive, slug-based routing so that a search for "JDM tuning garages near me" naturally ranks the React Router endpoints.
@@ -97,7 +129,7 @@
 
 ---
 
-## 6. Roadmap & Phased Implementation
+## 7. Roadmap & Phased Implementation
 
 ### Phase 1: MVP (Current State)
 - Static but dynamic-looking catalog of Vehicles, Builds, Upgrades, and Garages.
