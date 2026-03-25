@@ -4,6 +4,88 @@ This document serves as the absolute blueprint for the Tuned Society database. I
 
 ---
 
+## 🗺️ Visual Entity-Relationship Diagram (ERD)
+
+Here is the exact visual mapping of your entire database engine. You can see clearly which fields are Primary Keys (`PK`), Foreign Keys (`FK`), and Unique Constraints (`UQ`).
+
+```mermaid
+erDiagram
+    %% Core Vehicle Hierarchy
+    VehicleType {
+        String id PK "uuid"
+        String name UQ
+    }
+    Region {
+        String id PK "uuid"
+        String name
+        String slug
+        String vehicleTypeId FK
+    }
+    Brand {
+        String id PK "uuid"
+        String name
+        String slug UQ
+        String regionId FK
+    }
+    Model {
+        String id PK "uuid"
+        String name
+        String brandId FK
+    }
+    
+    VehicleType ||--o{ Region : "has many"
+    Region ||--o{ Brand : "has many"
+    Brand ||--o{ Model : "has many"
+
+    %% Build Goals System
+    BuildGoalCategory {
+        String id PK "uuid"
+        String slug UQ
+        String name
+        String description
+        String level
+        String warning
+    }
+    BuildOption {
+        String id PK "uuid"
+        String slug UQ
+        String name
+        String description
+        String[] tags
+        Boolean warning
+        String categoryId FK
+    }
+    BuildGoalCategory ||--o{ BuildOption : "has many"
+
+    %% Upgrade Path System
+    UpgradeCategory {
+        String id PK "uuid"
+        String slug UQ
+        String name
+        String description
+    }
+    UpgradeSubCategory {
+        String id PK "uuid"
+        String slug UQ
+        String name
+        String[] items
+        String categoryId FK
+    }
+    UpgradeCategory ||--o{ UpgradeSubCategory : "has many"
+
+    %% Independent Garage Metadata
+    Garage {
+        String id PK "uuid"
+        String slug UQ
+        String name
+        String location
+        String[] specialties
+        Float rating
+    }
+```
+
+---
+
 ## 🏗️ 1. The Vehicle Ontology Engine
 
 This four-tier relational structure is designed to strictly categorize vehicles. It uses a top-down One-to-Many dependency chain to prevent orphaned or disconnected vehicle data.
