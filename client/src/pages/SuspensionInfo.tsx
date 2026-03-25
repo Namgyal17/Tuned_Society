@@ -1,128 +1,32 @@
-import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import suspensionImg from '../assets/services/suspension.png';
 
-const SuspensionInfo: React.FC = () => {
-    // Scroll to top on mount
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
-    const solutions = [
-        {
-            title: "Coilover Systems",
-            description: "Height-adjustable performance suspension offering the perfect balance between comfort, control, and stance."
-        },
-        {
-            title: "Air Suspension",
-            description: "Fully adjustable air setups for drivers who want flexibility—slam it when parked, raise it for real-world roads."
-        },
-        {
-            title: "Lowering Springs",
-            description: "A clean, cost-effective way to enhance stance and handling while retaining near-stock comfort."
-        },
-        {
-            title: "Performance Shocks & Dampers",
-            description: "Upgraded dampers that improve ride quality, reduce body roll, and enhance overall road feedback."
-        },
-        {
-            title: "Sway Bars & Chassis Bracing",
-            description: "Improves cornering stability and steering response by reducing flex and body movement."
-        },
-        {
-            title: "Custom Suspension Tuning",
-            description: "Ride height, preload, rebound, and damping tuned to your driving style and Indian road conditions."
-        }
-    ];
-
+const SuspensionInfo = () => {
     return (
-        <div className="pt-24 min-h-screen bg-bg-primary text-text-primary">
-            {/* Hero Section */}
-            <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src={suspensionImg}
-                        alt="Suspension & Handling"
-                        className="w-full h-full object-cover opacity-30"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-transparent to-bg-primary/50"></div>
-                </div>
+        <div className="min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <Link to="/" className="inline-flex items-center text-accent-red hover:text-red-400 mb-8 transition-colors">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to Home
+            </Link>
 
-                <div className="relative z-10 container-custom text-center">
-                    <Link to="/" className="inline-block mb-6 text-accent-red hover:text-white transition-colors uppercase tracking-widest text-sm font-bold">
-                        ← Back to Home
-                    </Link>
-                    <h1 className="text-5xl md:text-7xl font-heading font-black italic uppercase text-white mb-6 drop-shadow-2xl">
-                        Suspension <span className="text-stroke-red text-transparent">& Handling</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto font-light">
-                        Where comfort meets control.
-                    </p>
-                </div>
-            </section>
+            <div className="bg-bg-secondary rounded-2xl border border-gray-800 p-8 md:p-12">
+                <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Suspension & Handling</h1>
+                <p className="text-gray-400 text-lg mb-8 max-w-3xl">
+                    Detailed breakdown on Coilovers, Lowering Springs, Sway Bars, and Air Suspension setups to drastically improve cornering speed and vehicle stance.
+                </p>
 
-            {/* Content Section */}
-            <section className="py-20">
-                <div className="container-custom max-w-4xl">
-
-                    {/* Intro */}
-                    <div className="mb-16">
-                        <h2 className="text-3xl font-heading font-bold text-white mb-6 uppercase">Redefining How Your Car Feels</h2>
-                        <p className="text-text-secondary leading-relaxed text-lg mb-6">
-                            Suspension is where comfort meets control. It defines how your car feels on the road—how confidently it corners, how smoothly it rides, and how connected you feel behind the wheel.
-                        </p>
-                        <p className="text-text-secondary leading-relaxed text-lg">
-                            At Tuned Society, we focus on suspension upgrades that don’t just lower your car, but genuinely improve stability, grip, and driving confidence. Whether it’s a daily driver, a weekend build, or a performance-focused machine, the right suspension setup changes everything.
-                        </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-black/50 rounded-xl p-6 border border-gray-800">
+                        <h3 className="text-xl font-bold mb-3 text-accent-red">Street vs Track</h3>
+                        <p className="text-gray-400">Choose the right spring rates and damping controls tailored to daily driving or weekend track days.</p>
                     </div>
-
-                    <div className="w-full h-px bg-white/10 my-12"></div>
-
-                    {/* Solutions Grid */}
-                    <div className="mb-16">
-                        <h2 className="text-3xl font-heading font-bold text-white mb-10 uppercase text-center">Suspension Solutions We Support</h2>
-
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {solutions.map((solution, index) => (
-                                <div key={index} className="bg-bg-card border border-white/5 p-8 rounded-xl hover:border-accent-red/30 transition-all duration-300 group">
-                                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-accent-red transition-colors">{solution.title}</h3>
-                                    <p className="text-text-secondary leading-relaxed">
-                                        {solution.description}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
+                    <div className="bg-black/50 rounded-xl p-6 border border-gray-800">
+                        <h3 className="text-xl font-bold mb-3 text-accent-red">Suspension Specialists</h3>
+                        <p className="text-gray-400">Get your suspension installed and aligned by experts using laser-guided geometry machines.</p>
                     </div>
-
-                    <div className="w-full h-px bg-white/10 my-12"></div>
-
-                    {/* Visual/Feature Block */}
-                    <div className="bg-bg-tertiary border border-white/5 p-10 rounded-xl relative overflow-hidden text-center">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-red to-transparent"></div>
-                        <h3 className="text-2xl font-bold text-white uppercase mb-4">Precision Setup</h3>
-                        <p className="text-text-secondary max-w-2xl mx-auto">
-                            We don't just bolt parts on. We align, corner balance, and damp-adjust every setup to ensure it performs exactly as intended for your specific use case.
-                        </p>
-                    </div>
-
                 </div>
-            </section>
-
-            {/* CTA */}
-            <section className="py-20 bg-bg-secondary text-center">
-                <div className="container-custom">
-                    <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6 uppercase">Drop It. Tune It. Drive It.</h2>
-                    <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-                        Get the perfect stance and handling setup for your build.
-                    </p>
-                    <button
-                        onClick={() => (window as any).openConsultationModal && (window as any).openConsultationModal()}
-                        className="btn btn-primary px-12 py-4 text-lg shadow-glow"
-                    >
-                        GET A SUSPENSION QUOTE
-                    </button>
-                </div>
-            </section>
+            </div>
         </div>
     );
 };

@@ -10,8 +10,7 @@ const ConsultationModal: React.FC = () => {
     const [formData, setFormData] = useState({
         vehicle: { type: '', region: '', brand: '', model: '' },
         buildGoal: { category: '', build: '' },
-        budget: '',
-        usage: '',
+        
         preferences: { priorities: [] as string[], timeline: '' },
         location: '',
         selectedGarage: '',
@@ -100,7 +99,7 @@ const ConsultationModal: React.FC = () => {
                     phone = selected?.phone;
                 }
                 setSuccessData({ phone: phone });
-                setCurrentStep(9); // Move to success step
+                setCurrentStep(8); // Move to success step
             } else {
                 throw new Error(data.error || 'Failed to submit consultation');
             }
@@ -120,12 +119,12 @@ const ConsultationModal: React.FC = () => {
         // Default to India 91 if no country code (naively assuming for now as per context)
         const phone = cleanPhone.length === 10 ? `91${cleanPhone}` : cleanPhone;
 
-        const text = `Hi, I just submitted a consultation request via Tuned Society.\n\n*Vehicle:* ${formData.vehicle.brand} ${formData.vehicle.model}\n*Build Goal:* ${formData.buildGoal.category} - ${formData.buildGoal.build}\n*Budget:* ${formData.budget}\n*Timeline:* ${formData.preferences.timeline}\n\nCan we discuss my build?`;
+        const text = `Hi, I just submitted a consultation request via Tuned Society.\n\n*Vehicle:* ${formData.vehicle.brand} ${formData.vehicle.model}\n*Build Goal:* ${formData.buildGoal.category} - ${formData.buildGoal.build}\n*Timeline:* ${formData.preferences.timeline}\n\nCan we discuss my build?`;
 
         return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
     };
 
-    const totalSteps = 8;
+    const totalSteps = 7;
 
 
     return (
@@ -299,42 +298,8 @@ const ConsultationModal: React.FC = () => {
                                 </div>
                             )}
 
-                            {/* Step 5: Budget & Usage */}
+                            {/* Step 5: Location & Preferences */}
                             {currentStep === 5 && (
-                                <div className="animate-fadeInUp space-y-10">
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white mb-6">What is your Budget?</h3>
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                            {["Under ₹50k", "₹50k - ₹1 Lakh", "₹1 Lakh - ₹3 Lakhs", "₹3 Lakhs - ₹5 Lakhs", "₹5 Lakhs - ₹10 Lakhs", "₹10 Lakhs+"].map(b => (
-                                                <button
-                                                    key={b}
-                                                    onClick={() => setFormData({ ...formData, budget: b })}
-                                                    className={`p-4 rounded-lg border transition-all text-sm font-medium ${formData.budget === b ? 'border-accent-red bg-accent-red text-white shadow-glow' : 'border-white/10 bg-white/5 text-text-secondary hover:border-white/30 hover:text-white'}`}
-                                                >
-                                                    {b}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white mb-6">Primary Usage?</h3>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                            {["Daily Driver", "Weekend Warrior", "Track / Competitive", "Show / Stance"].map(u => (
-                                                <button
-                                                    key={u}
-                                                    onClick={() => setFormData({ ...formData, usage: u })}
-                                                    className={`p-4 rounded-lg border transition-all text-sm font-medium ${formData.usage === u ? 'border-accent-red bg-accent-red text-white shadow-glow' : 'border-white/10 bg-white/5 text-text-secondary hover:border-white/30 hover:text-white'}`}
-                                                >
-                                                    {u}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Step 6: Location & Preferences */}
-                            {currentStep === 6 && (
                                 <div className="animate-fadeInUp space-y-8 max-w-lg mx-auto w-full">
                                     <h3 className="text-xl font-bold text-white mb-2 text-center">Logistics</h3>
 
@@ -381,8 +346,8 @@ const ConsultationModal: React.FC = () => {
                                 </div>
                             )}
 
-                            {/* Step 7: Garage Selection */}
-                            {currentStep === 7 && (
+                            {/* Step 6: Garage Selection */}
+                            {currentStep === 6 && (
                                 <div className="animate-fadeInUp space-y-6">
                                     <h3 className="text-xl font-bold text-white mb-4">Select a Garage <span className="text-accent-red">*</span></h3>
                                     <p className="text-text-muted text-sm mb-6">Please select a workshop to handle your build. This ensures we can connect you with the right experts.</p>
@@ -518,8 +483,8 @@ const ConsultationModal: React.FC = () => {
                                 </div>
                             )}
 
-                            {/* Step 8: User Details */}
-                            {currentStep === 8 && (
+                            {/* Step 7: User Details */}
+                            {currentStep === 7 && (
                                 <div className="animate-fadeInUp space-y-6 max-w-lg mx-auto w-full">
                                     <h3 className="text-xl font-bold text-white mb-2 text-center">Final Details</h3>
                                     <p className="text-text-muted text-sm text-center mb-6">Almost done! Enter your details so we can contact you.</p>
@@ -554,8 +519,8 @@ const ConsultationModal: React.FC = () => {
                                 </div>
                             )}
 
-                            {/* Step 9: Success & WhatsApp */}
-                            {currentStep === 9 && (
+                            {/* Step 8: Success & WhatsApp */}
+                            {currentStep === 8 && (
                                 <div className="animate-fadeInUp flex flex-col items-center justify-center text-center py-10">
                                     <div className="w-20 h-20 bg-yellow-500/20 rounded-full flex items-center justify-center mb-6 animate-pulse">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -593,7 +558,7 @@ const ConsultationModal: React.FC = () => {
                         </div>
 
                         {/* Navigation Footer (Hidden for Step 9) */}
-                        {currentStep !== 9 && (
+                        {currentStep !== 8 && (
                             <div className="px-8 pb-8 pt-4 shrink-0 bg-[#0a0a0a] border-t border-white/5 flex justify-between items-center z-10 text-white">
                                 {currentStep > 1 && (
                                     <button onClick={prevStep} className="btn btn-secondary">
@@ -602,17 +567,17 @@ const ConsultationModal: React.FC = () => {
                                 )}
 
                                 <div className="ml-auto">
-                                    {(currentStep === 5 || currentStep === 6) && (
+                                    {currentStep === 5 && (
                                         <button
                                             onClick={nextStep}
-                                            disabled={(currentStep === 5 && (!formData.budget || !formData.usage)) || (currentStep === 6 && (!formData.location || !formData.preferences.timeline))}
+                                            disabled={!formData.location || !formData.preferences.timeline}
                                             className="btn btn-primary px-8 py-3 disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed shadow-glow"
                                         >
                                             Next Step
                                         </button>
                                     )}
 
-                                    {currentStep === 7 && (
+                                    {currentStep === 6 && (
                                         <button
                                             onClick={nextStep}
                                             disabled={!formData.selectedGarage}
@@ -622,7 +587,7 @@ const ConsultationModal: React.FC = () => {
                                         </button>
                                     )}
 
-                                    {currentStep === 8 && (
+                                    {currentStep === 7 && (
                                         <button
                                             type="button"
                                             onClick={handleSubmit}

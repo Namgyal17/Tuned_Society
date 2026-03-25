@@ -106,8 +106,7 @@ const ConsultationSchema = z.object({
         category: z.string(),
         build: z.string()
     }),
-    budget: z.string(),
-    usage: z.string(),
+
     preferences: z.object({
         priorities: z.array(z.string()).optional(),
         timeline: z.string()
@@ -169,8 +168,6 @@ app.post('/api/consultation', async (req, res) => {
                         
                         <h3>Build Requirements</h3>
                         <p><strong>Goal:</strong> ${data.buildGoal.category} - ${data.buildGoal.build}</p>
-                        <p><strong>Budget:</strong> ${data.budget}</p>
-                        <p><strong>Usage:</strong> ${data.usage}</p>
                         
                         <h3>Selected Garage</h3>
                         <p><strong>Garage Slug:</strong> ${data.selectedGarage || 'Not Selected'}</p>
