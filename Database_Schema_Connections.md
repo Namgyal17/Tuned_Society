@@ -13,18 +13,18 @@ erDiagram
     %% Core Vehicle Hierarchy
     VehicleType {
         String id PK "uuid"
-        String name UQ
+        String name "unique"
     }
     Region {
         String id PK "uuid"
         String name
-        String slug
+        String slug "unique"
         String vehicleTypeId FK
     }
     Brand {
         String id PK "uuid"
         String name
-        String slug UQ
+        String slug "unique"
         String regionId FK
     }
     Model {
@@ -40,7 +40,7 @@ erDiagram
     %% Build Goals System
     BuildGoalCategory {
         String id PK "uuid"
-        String slug UQ
+        String slug "unique"
         String name
         String description
         String level
@@ -48,7 +48,7 @@ erDiagram
     }
     BuildOption {
         String id PK "uuid"
-        String slug UQ
+        String slug "unique"
         String name
         String description
         String[] tags
@@ -60,13 +60,13 @@ erDiagram
     %% Upgrade Path System
     UpgradeCategory {
         String id PK "uuid"
-        String slug UQ
+        String slug "unique"
         String name
         String description
     }
     UpgradeSubCategory {
         String id PK "uuid"
-        String slug UQ
+        String slug "unique"
         String name
         String[] items
         String categoryId FK
@@ -76,7 +76,7 @@ erDiagram
     %% Independent Garage Metadata
     Garage {
         String id PK "uuid"
-        String slug UQ
+        String slug "unique"
         String name
         String location
         String[] specialties
