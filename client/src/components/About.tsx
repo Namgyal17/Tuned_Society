@@ -67,13 +67,13 @@ const About: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="relative animate-on-scroll opacity-0 translate-y-10 transition-all duration-700 delay-200">
+                    <div className="relative">
                         {/* Abstract Art / Image Placeholder */}
                         <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-white/5 group">
                             <img
                                 src={engineBay}
                                 alt="Engine Bay"
-                                className="w-full h-full object-contain md:object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-75 md:scale-100 group-hover:scale-110"
+                                className="w-full h-full object-contain md:object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-transparent to-transparent opacity-60"></div>
 
