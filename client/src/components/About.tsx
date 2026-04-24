@@ -25,7 +25,7 @@ const About: React.FC = () => {
     return (
         <section id="about" ref={sectionRef} className="py-24 bg-bg-secondary relative overflow-hidden">
             {/* Gradient Overlay for seamless transition */}
-            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-bg-primary to-bg-secondary z-10"></div>
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-bg-primary to-bg-secondary pointer-events-none z-0"></div>
 
             <div className="container-custom relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -67,20 +67,20 @@ const About: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="relative">
+                    <div className="relative animate-on-scroll opacity-0 translate-y-10 transition-all duration-700 delay-200">
                         {/* Abstract Art / Image Placeholder */}
-                        <div className="relative md:aspect-[5/5] rounded-lg overflow-hidden md:border md:border-white/5 group">
+                        <div className="relative md:aspect-[5/4] rounded-lg overflow-hidden md:border md:border-white/5 group">
                             <img
                                 src={engineBay}
                                 alt="Engine Bay"
-                                className="w-full h-auto md:h-full object-cover"
+                                className="w-full h-full object-contain md:object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-transparent to-transparent opacity-60"></div>
 
                             {/* Floating Card */}
-                            <div className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 bg-bg-card/90 backdrop-blur-md p-3 md:p-6 rounded border border-white/10 shadow-2xl">
-                                <p className="font-heading italic text-sm md:text-lg lg:text-xl text-white">"The details are not the details. They make the design."</p>
-                                <p className="mt-1 md:mt-2 text-xs md:text-sm text-accent-red font-bold uppercase tracking-widest">- Charles Eames</p>
+                            <div className="absolute bottom-0 left-0 right-0 md:bottom-0 md:left-8 md:right-8 bg-bg-card/90 backdrop-blur-md p-1.5 md:p-2.5 rounded-t md:rounded border-t border-white/10 shadow-2xl">
+                                <p className="font-heading italic text-[10px] md:text-sm text-white leading-none">"The details are not the details. They make the design."</p>
+                                <p className="mt-0.5 text-[8px] md:text-[10px] text-accent-red font-bold uppercase tracking-widest">- Charles Eames</p>
                             </div>
                         </div>
                     </div>
