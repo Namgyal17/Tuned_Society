@@ -69,11 +69,11 @@ const About: React.FC = () => {
 
                     <div className="relative">
                         {/* Abstract Art / Image Placeholder */}
-                        <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-white/5 group">
+                        <div className="relative md:aspect-[5/4] rounded-lg overflow-hidden md:border md:border-white/5 group">
                             <img
                                 src={engineBay}
                                 alt="Engine Bay"
-                                className="w-full h-full object-contain md:object-cover"
+                                className="w-full h-auto md:h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-transparent to-transparent opacity-60"></div>
 
