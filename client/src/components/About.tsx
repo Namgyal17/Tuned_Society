@@ -69,7 +69,7 @@ const About: React.FC = () => {
 
                     <div className="relative">
                         {/* Abstract Art / Image Placeholder */}
-                        <div className="relative md:aspect-[5/4] rounded-lg overflow-hidden md:border md:border-white/5 group">
+                        <div className="relative md:aspect-[5/5] rounded-lg overflow-hidden md:border md:border-white/5 group">
                             <img
                                 src={engineBay}
                                 alt="Engine Bay"
