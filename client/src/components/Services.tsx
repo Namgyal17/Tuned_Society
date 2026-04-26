@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import tuningImg from '../assets/services/tuning.png';
-import suspensionImg from '../assets/services/suspension.png';
-import wheelsImg from '../assets/services/wheels.png';
-import exhaustImg from '../assets/services/exhaust.png';
-import aestheticsImg from '../assets/services/aesthetics.png';
-import brakesImg from '../assets/services/brakes.png';
+import tuningImg from '../assets/services/tuning.jpg';
+import suspensionImg from '../assets/services/suspension.jpg';
+import wheelsImg from '../assets/services/wheels.jpg';
+import exhaustImg from '../assets/services/exhaust.jpg';
+import aestheticsImg from '../assets/services/aesthetics.jpg';
+import brakesImg from '../assets/services/brakes.jpg';
 
 const Services: React.FC = () => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -68,7 +68,9 @@ const Services: React.FC = () => {
             <div className="container-custom">
                 <div className="flex justify-between items-end mb-12">
                     <div>
-                        <h2 className="text-4xl font-heading font-bold uppercase tracking-wide mb-2">Our <span className="text-accent-red">Experience</span></h2>
+                        <h2 className="text-4xl md:text-6xl font-heading font-black italic uppercase text-white mb-2 leading-tight drop-shadow-2xl">
+                            OUR <span className="text-accent-red animate-pulse-slow">EXPERIENCE</span>
+                        </h2>
                         <p className="text-text-muted">What we can help you build.</p>
                     </div>
                     <div className="flex gap-4">
@@ -106,7 +108,11 @@ const Services: React.FC = () => {
                                 </div>
 
                                 <div className="p-8 pt-4 flex-grow flex flex-col">
-                                    <h3 className="text-2xl font-bold font-heading text-white mb-4 group-hover:text-accent-red transition-colors">{service.title}</h3>
+                                    <h3 className="text-2xl md:text-3xl font-black italic uppercase font-heading text-white mb-4 leading-tight drop-shadow-lg">
+                                        {service.title.split(' ')[0]} <span className="text-accent-red animate-pulse-slow">
+                                            {service.title.split(' ').slice(1).join(' ')}
+                                        </span>
+                                    </h3>
                                     <p className="text-text-secondary leading-relaxed mb-6 flex-grow">
                                         {service.description}
                                     </p>
