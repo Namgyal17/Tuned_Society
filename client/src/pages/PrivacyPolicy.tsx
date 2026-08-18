@@ -14,6 +14,7 @@ const SECTIONS = [
     { id: 'childrens-privacy', label: "Children's Privacy" },
     { id: 'third-party-links', label: 'Third-Party Links & Services' },
     { id: 'international-transfers', label: 'International Data Transfers' },
+    { id: 'grievance-redressal', label: 'Grievance Redressal' },
     { id: 'changes', label: 'Changes to This Policy' },
     { id: 'contact', label: 'Contact Us' },
 ];
@@ -70,11 +71,21 @@ const PrivacyPolicy: React.FC = () => {
 
                     {/* Content */}
                     <div className="min-w-0">
-                        <p className="text-text-secondary leading-relaxed text-lg mb-16">
+                        <p className="text-text-secondary leading-relaxed text-lg mb-6">
                             Tuned Society ("Tuned Society", "we", "us", or "our") operates the Tuned Society
                             mobile app and website, connecting car and bike owners with tuning garages for
                             bookings, community posts, and vehicle services. This policy applies to everyone
                             who uses the app, the website, or creates a garage or vendor account with us.
+                        </p>
+                        <p className="text-text-secondary leading-relaxed text-lg mb-16">
+                            For the purposes of India's Digital Personal Data Protection Act, 2023 ("DPDP
+                            Act"), <strong className="text-white">Tuned Society is the Data Fiduciary</strong> responsible
+                            for your personal data — the entity that decides why and how it is processed. By
+                            creating an account, requesting an OTP, or otherwise using the app, you consent to
+                            the collection and processing of your personal data as described in this policy.
+                            You may withdraw that consent at any time as described in{' '}
+                            <a href="#your-rights" className="text-accent-red hover:text-white transition-colors">Your Rights &amp; Choices</a>,
+                            though withdrawal may mean we can no longer provide services that depend on that data.
                         </p>
 
                         {/* 1. Information We Collect */}
@@ -102,8 +113,8 @@ const PrivacyPolicy: React.FC = () => {
                             <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-3">Content You Share</h3>
                             <p className="text-text-secondary leading-relaxed mb-6">
                                 Posts, photos, videos, comments, likes, follows, and saves you create or make
-                                within the app are stored and, depending on your privacy settings, shown to
-                                other users.
+                                within the app are stored on our cloud storage (Amazon Web Services S3) and,
+                                depending on your privacy settings, shown to other users.
                             </p>
 
                             <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-3">Garage &amp; Vendor Information</h3>
@@ -120,12 +131,22 @@ const PrivacyPolicy: React.FC = () => {
                             </p>
 
                             <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-3">Device &amp; Usage Information</h3>
-                            <p className="text-text-secondary leading-relaxed">
+                            <p className="text-text-secondary leading-relaxed mb-6">
                                 We automatically collect a push-notification token, device type, operating
                                 system, app version, IP address, and general usage data (such as which
                                 features you use and app crash reports) to keep the app running reliably and
                                 to improve it.
                             </p>
+
+                            <div className="bg-white/5 border-l-2 border-accent-red px-6 py-4">
+                                <p className="text-text-secondary text-sm leading-relaxed">
+                                    <span className="text-white font-bold">What we don't collect: </span>
+                                    Tuned Society does not collect financial information (such as card or bank
+                                    details), health records, biometric data, or any other category defined as
+                                    sensitive personal data under Indian law. If we add payment features in the
+                                    future, this policy will be updated before that data is ever collected.
+                                </p>
+                            </div>
                         </div>
 
                         <div className="w-full h-px bg-white/10 my-12" />
@@ -245,13 +266,18 @@ const PrivacyPolicy: React.FC = () => {
                             <h2 className="text-3xl font-heading font-bold text-white mb-6 uppercase">
                                 <span className="text-accent-red font-display mr-2">06</span>Data Security
                             </h2>
-                            <p className="text-text-secondary leading-relaxed">
+                            <p className="text-text-secondary leading-relaxed mb-6">
                                 We use industry-standard safeguards to protect your information, including
                                 encrypted connections (HTTPS/TLS) between the app and our servers, secure
                                 token-based authentication, and access controls that limit who can view your
                                 data internally. No method of transmission or storage is 100% secure, but we
                                 work to protect your information using practices appropriate to its
                                 sensitivity.
+                            </p>
+                            <p className="text-text-secondary leading-relaxed">
+                                In the event of a personal data breach, we will notify the Data Protection
+                                Board of India and the affected users as required under the DPDP Act, and take
+                                immediate steps to contain and remediate the breach.
                             </p>
                         </div>
 
@@ -274,6 +300,8 @@ const PrivacyPolicy: React.FC = () => {
                                         'Request deletion of your account and associated personal data',
                                         'Withdraw consent for optional data uses, such as marketing notifications',
                                         'Ask how your information has been used and who it has been shared with',
+                                        'Nominate another individual to exercise these rights on your behalf in the event of your death or incapacity',
+                                        'Lodge a complaint with the Data Protection Board of India if you are unsatisfied with how we handle your request',
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start gap-3 text-text-secondary">
                                             <span className="text-accent-red mt-1">▹</span>
@@ -284,7 +312,9 @@ const PrivacyPolicy: React.FC = () => {
                             </div>
                             <p className="text-text-secondary leading-relaxed mt-6">
                                 To exercise any of these rights, contact us using the details in the{' '}
-                                <a href="#contact" className="text-accent-red hover:text-white transition-colors">Contact Us</a> section below.
+                                <a href="#contact" className="text-accent-red hover:text-white transition-colors">Contact Us</a> section, or
+                                reach our Grievance Officer directly as described in{' '}
+                                <a href="#grievance-redressal" className="text-accent-red hover:text-white transition-colors">Grievance Redressal</a> below.
                             </p>
                         </div>
 
@@ -334,10 +364,33 @@ const PrivacyPolicy: React.FC = () => {
 
                         <div className="w-full h-px bg-white/10 my-12" />
 
-                        {/* 11. Changes */}
+                        {/* 11. Grievance Redressal */}
+                        <div id="grievance-redressal" className="mb-16 scroll-mt-28">
+                            <h2 className="text-3xl font-heading font-bold text-white mb-6 uppercase">
+                                <span className="text-accent-red font-display mr-2">11</span>Grievance Redressal
+                            </h2>
+                            <p className="text-text-secondary leading-relaxed mb-6">
+                                In accordance with the DPDP Act and the Information Technology Act, 2000, we
+                                have appointed a Grievance Officer to address any concerns or complaints about
+                                how your personal data is collected, used, or protected. If you're unhappy
+                                with how we've handled your data or a request you've made, contact the
+                                Grievance Officer directly and we will acknowledge your complaint and respond
+                                within 30 days.
+                            </p>
+                            <div className="inline-block px-6 py-4 bg-white/5 border-l-2 border-accent-red">
+                                <p className="text-white font-bold">Grievance Officer — Tuned Society</p>
+                                <a href="mailto:tunedsociety7@gmail.com" className="text-accent-red hover:text-white transition-colors">
+                                    tunedsociety7@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className="w-full h-px bg-white/10 my-12" />
+
+                        {/* 12. Changes */}
                         <div id="changes" className="mb-16 scroll-mt-28">
                             <h2 className="text-3xl font-heading font-bold text-white mb-6 uppercase">
-                                <span className="text-accent-red font-display mr-2">11</span>Changes to This Policy
+                                <span className="text-accent-red font-display mr-2">12</span>Changes to This Policy
                             </h2>
                             <p className="text-text-secondary leading-relaxed">
                                 We may update this policy from time to time as Tuned Society grows — for
@@ -349,10 +402,10 @@ const PrivacyPolicy: React.FC = () => {
 
                         <div className="w-full h-px bg-white/10 my-12" />
 
-                        {/* 12. Contact */}
+                        {/* 13. Contact */}
                         <div id="contact" className="scroll-mt-28">
                             <h2 className="text-3xl font-heading font-bold text-white mb-6 uppercase">
-                                <span className="text-accent-red font-display mr-2">12</span>Contact Us
+                                <span className="text-accent-red font-display mr-2">13</span>Contact Us
                             </h2>
                             <p className="text-text-secondary leading-relaxed mb-6">
                                 If you have questions about this policy or how your information is handled,
@@ -360,8 +413,8 @@ const PrivacyPolicy: React.FC = () => {
                             </p>
                             <div className="inline-block px-6 py-4 bg-white/5 border-l-2 border-accent-red">
                                 <p className="text-white font-bold">Tuned Society</p>
-                                <a href="mailto:privacy@tunedsociety.in" className="text-accent-red hover:text-white transition-colors">
-                                    privacy@tunedsociety.in
+                                <a href="mailto:tunedsociety7@gmail.com" className="text-accent-red hover:text-white transition-colors">
+                                    tunedsociety7@gmail.com
                                 </a>
                             </div>
                         </div>
