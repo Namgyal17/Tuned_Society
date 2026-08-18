@@ -14,6 +14,7 @@ import WheelsInfo from './pages/WheelsInfo';
 import ExhaustInfo from './pages/ExhaustInfo';
 import AestheticsInfo from './pages/AestheticsInfo';
 import BrakingInfo from './pages/BrakingInfo';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function LandingPage() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/exhaust-systems" element={<ExhaustInfo />} />
           <Route path="/aesthetics-aero" element={<AestheticsInfo />} />
           <Route path="/braking-systems" element={<BrakingInfo />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </main>
       <Footer />

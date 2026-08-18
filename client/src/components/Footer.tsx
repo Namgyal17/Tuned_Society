@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 
 const Footer: React.FC = () => {
@@ -20,6 +21,9 @@ const Footer: React.FC = () => {
                                 {link}
                             </a>
                         ))}
+                        <Link to="/privacy-policy" className="text-text-secondary hover:text-white transition-colors text-sm uppercase font-medium">
+                            Privacy
+                        </Link>
                     </div>
 
                     <div className="text-right">

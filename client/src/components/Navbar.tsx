@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 
 const Navbar: React.FC = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -13,12 +16,19 @@ const Navbar: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // "About"/"Services"/"Consultation" are sections on the landing page, so
+    // they only make sense to scroll to once we're actually on it — from any
+    // other route (e.g. Privacy Policy) we navigate home first, then scroll.
     const scrollToSection = (id: string) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-            setMobileMenuOpen(false);
+        if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => {
+                document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        } else {
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
         }
+        setMobileMenuOpen(false);
     };
 
     return (
@@ -43,6 +53,12 @@ const Navbar: React.FC = () => {
                             {item}
                         </button>
                     ))}
+                    <Link
+                        to="/privacy-policy"
+                        className="font-heading font-semibold text-sm uppercase tracking-wider text-text-secondary hover:text-white hover:text-accent-red transition-all duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-accent-red after:bottom-[-4px] after:left-0 after:transition-all after:duration-300 hover:after:w-full"
+                    >
+                        Privacy
+                    </Link>
                     <button
                         onClick={() => (window as any).openConsultationModal && (window as any).openConsultationModal()}
                         className="btn btn-primary px-6 py-2 text-sm"
@@ -72,6 +88,13 @@ const Navbar: React.FC = () => {
                             {item}
                         </button>
                     ))}
+                    <Link
+                        to="/privacy-policy"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="font-heading font-bold text-lg uppercase tracking-wider text-white"
+                    >
+                        Privacy
+                    </Link>
                 </div>
             </div>
         </nav>
