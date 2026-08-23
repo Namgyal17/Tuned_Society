@@ -199,6 +199,50 @@ app.post('/api/consultation', async (req, res) => {
     }
 });
 
+// Submit waitlist signup
+const WaitlistSchema = z.object({
+    name: z.string().min(1),
+    email: z.string().email(),
+    interested: z.boolean()
+});
+
+app.post('/api/waitlist', async (req, res) => {
+    try {
+        const data = WaitlistSchema.parse(req.body);
+        console.log('Waitlist Signup Received:', data);
+
+        const entry = await prisma.waitlist.create({ data });
+
+        try {
+            await resend.emails.send({
+                from: 'Tuned Society <onboarding@resend.dev>',
+                to: 'tunedsociety7@gmail.com',
+                subject: `New Waitlist Signup: ${data.name}`,
+                html: `
+                    <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+                        <h2 style="color: #dc2626;">New Waitlist Signup</h2>
+                        <p><strong>Name:</strong> ${data.name}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Interested in using the app:</strong> ${data.interested ? 'Yes' : 'No'}</p>
+                    </div>
+                `
+            });
+        } catch (emailError: any) {
+            // Don't fail the signup if the notification email fails to send
+            console.error('Failed to send waitlist notification email:', emailError);
+        }
+
+        res.json({ success: true, message: 'Added to waitlist', id: entry.id });
+    } catch (error: any) {
+        if (error?.issues) {
+            console.error("Validation Error:", error.issues);
+            return res.status(400).json({ error: 'Invalid data provided' });
+        }
+        console.error("Waitlist Error:", error);
+        res.status(500).json({ error: 'Failed to join waitlist' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

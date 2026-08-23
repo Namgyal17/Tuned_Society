@@ -8,6 +8,7 @@ import Consultation from './components/Consultation';
 import JoinTheCult from './components/JoinTheCult';
 import Footer from './components/Footer';
 import ConsultationModal from './components/ConsultationModal';
+import WaitlistModal from './components/WaitlistModal';
 import PerformanceInfo from './pages/PerformanceInfo';
 import SuspensionInfo from './pages/SuspensionInfo';
 import WheelsInfo from './pages/WheelsInfo';
@@ -35,6 +36,10 @@ function App() {
       const event = new CustomEvent('open-consultation');
       window.dispatchEvent(event);
     };
+    (window as any).openWaitlistModal = () => {
+      const event = new CustomEvent('open-waitlist');
+      window.dispatchEvent(event);
+    };
   }, []);
 
   return (
@@ -54,6 +59,7 @@ function App() {
       </main>
       <Footer />
       <ConsultationModal />
+      <WaitlistModal />
     </div>
   );
 }

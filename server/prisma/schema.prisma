@@ -96,3 +96,11 @@ model UpgradeSubCategory {
   items      String[]
 }
 
+model Waitlist {
+  id         String   @id @default(uuid())
+  name       String
+  email      String
+  interested Boolean
+  createdAt  DateTime @default(now())
+}
+

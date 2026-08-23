@@ -35,10 +35,10 @@ const Hero: React.FC = () => {
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                     <button
-                        onClick={() => (window as any).openConsultationModal && (window as any).openConsultationModal()}
+                        onClick={() => (window as any).openWaitlistModal && (window as any).openWaitlistModal()}
                         className="btn btn-primary min-w-[180px]"
                     >
-                        Start Your Build
+                        Join the Waitlist
                     </button>
                     <button
                         onClick={scrollToAbout}
