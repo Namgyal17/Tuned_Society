@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const EFFECTIVE_DATE = 'August 18, 2026';
+const EFFECTIVE_DATE = 'November 6, 2026';
 
 const SECTIONS = [
     { id: 'information-we-collect', label: 'Information We Collect' },
@@ -72,10 +72,12 @@ const PrivacyPolicy: React.FC = () => {
                     {/* Content */}
                     <div className="min-w-0">
                         <p className="text-text-secondary leading-relaxed text-lg mb-6">
-                            Tuned Society ("Tuned Society", "we", "us", or "our") operates the Tuned Society
-                            mobile app and website, connecting car and bike owners with tuning garages for
-                            bookings, community posts, and vehicle services. This policy applies to everyone
-                            who uses the app, the website, or creates a garage or vendor account with us.
+                            Tuned Society ("Tuned Society", "we", "us", or "our"), a sole proprietorship of
+                            Namgyal Gurung in Siliguri, West Bengal, India (GSTIN 19DYQPG4179D1Z0), operates the Tuned Society mobile app and website, connecting car and bike
+                            owners with independent tuning garages, marketplace sellers, and event organizers
+                            for bookings, purchases, events, and community posts. This policy applies to
+                            everyone who uses the app, the website, or creates a garage, vendor or organizer
+                            account with us.
                         </p>
                         <p className="text-text-secondary leading-relaxed text-lg mb-16">
                             For the purposes of India's Digital Personal Data Protection Act, 2023 ("DPDP
@@ -124,10 +126,25 @@ const PrivacyPolicy: React.FC = () => {
                                 find and book with you.
                             </p>
 
+                            <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-3">Orders &amp; Payments</h3>
+                            <p className="text-text-secondary leading-relaxed mb-6">
+                                When you buy from the marketplace, we collect your name, phone number, shipping
+                                address, the items ordered, and the order's payment status. Payments are
+                                processed by our payment partner, Razorpay. We receive a payment reference,
+                                amount, method type and status, but we never receive or store your full card
+                                number, CVV, UPI PIN or net-banking password.
+                            </p>
+
+                            <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-3">Event Registrations</h3>
+                            <p className="text-text-secondary leading-relaxed mb-6">
+                                When you register for an event, we collect the attendee name, phone number and
+                                email you provide, your ticket details, and payment status for paid events.
+                            </p>
+
                             <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-3">Marketplace Waitlist</h3>
                             <p className="text-text-secondary leading-relaxed mb-6">
-                                If you join the waitlist for our upcoming marketplace, we collect your email
-                                address so we can notify you when it launches.
+                                If you join a waitlist for new features, we collect your email address so we
+                                can notify you when they launch.
                             </p>
 
                             <h3 className="text-white font-bold uppercase tracking-wide text-sm mb-3">Device &amp; Usage Information</h3>
@@ -141,10 +158,9 @@ const PrivacyPolicy: React.FC = () => {
                             <div className="bg-white/5 border-l-2 border-accent-red px-6 py-4">
                                 <p className="text-text-secondary text-sm leading-relaxed">
                                     <span className="text-white font-bold">What we don't collect: </span>
-                                    Tuned Society does not collect financial information (such as card or bank
-                                    details), health records, biometric data, or any other category defined as
-                                    sensitive personal data under Indian law. If we add payment features in the
-                                    future, this policy will be updated before that data is ever collected.
+                                    Tuned Society does not collect or store card numbers, CVVs, UPI PINs or bank
+                                    passwords (these are handled only by Razorpay), health records, biometric data,
+                                    or any other category defined as sensitive personal data under Indian law.
                                 </p>
                             </div>
                         </div>
@@ -162,6 +178,7 @@ const PrivacyPolicy: React.FC = () => {
                                     {[
                                         'Verify your identity and keep your account secure',
                                         'Connect you with garages and process your bookings',
+                                        'Process marketplace orders, payments, refunds and event registrations',
                                         'Show you posts, garages, and content relevant to you',
                                         'Send booking updates, happy codes, and other service notifications',
                                         'Respond to support requests and resolve disputes',
@@ -196,7 +213,24 @@ const PrivacyPolicy: React.FC = () => {
                                     <p className="text-text-secondary text-sm">
                                         Your name, phone number, and vehicle details are shared with the specific
                                         garage you book an appointment with, so they can prepare for and carry
-                                        out the service.
+                                        out the service. Garages are independent businesses and are bound by their
+                                        agreement with us to use your details only for your booking and not for
+                                        unsolicited marketing.
+                                    </p>
+                                </div>
+                                <div className="bg-bg-card border border-white/5 p-6 rounded-xl">
+                                    <h4 className="text-white font-bold uppercase mb-2">With sellers and event organizers</h4>
+                                    <p className="text-text-secondary text-sm">
+                                        For a marketplace order, your name, phone number and shipping address are
+                                        shared with the seller so they can deliver it. For an event, the attendee
+                                        details you provide are shared with that event's organizer.
+                                    </p>
+                                </div>
+                                <div className="bg-bg-card border border-white/5 p-6 rounded-xl">
+                                    <h4 className="text-white font-bold uppercase mb-2">With our payment partner</h4>
+                                    <p className="text-text-secondary text-sm">
+                                        Payments are processed by Razorpay, which handles your payment details under
+                                        its own privacy policy and applicable Reserve Bank of India rules.
                                     </p>
                                 </div>
                                 <div className="bg-bg-card border border-white/5 p-6 rounded-xl">
@@ -220,9 +254,10 @@ const PrivacyPolicy: React.FC = () => {
                                 <div className="bg-bg-card border border-white/5 p-6 rounded-xl">
                                     <h4 className="text-white font-bold uppercase mb-2">In a business transfer</h4>
                                     <p className="text-text-secondary text-sm">
-                                        If Tuned Society is involved in a merger, acquisition, or sale of assets,
-                                        your information may be transferred as part of that transaction, subject
-                                        to this policy.
+                                        If Tuned Society is involved in a merger, acquisition, or sale of assets, or
+                                        its business is transferred to a company or LLP formed to carry it on, your
+                                        information may be transferred as part of that transaction, subject to this
+                                        policy.
                                     </p>
                                 </div>
                             </div>
@@ -378,7 +413,8 @@ const PrivacyPolicy: React.FC = () => {
                                 within 30 days.
                             </p>
                             <div className="inline-block px-6 py-4 bg-white/5 border-l-2 border-accent-red">
-                                <p className="text-white font-bold">Grievance Officer — Tuned Society</p>
+                                <p className="text-white font-bold">Grievance Officer — Namgyal Gurung, Tuned Society</p>
+                                <p className="text-text-secondary text-sm mb-1">3rd Floor, 47/12, L.B. Gurung Residence, Road No. 3, Himali Shaheed Nagar, Siliguri, West Bengal 734001</p>
                                 <a href="mailto:tunedsociety7@gmail.com" className="text-accent-red hover:text-white transition-colors">
                                     tunedsociety7@gmail.com
                                 </a>
@@ -412,7 +448,8 @@ const PrivacyPolicy: React.FC = () => {
                                 reach out to us:
                             </p>
                             <div className="inline-block px-6 py-4 bg-white/5 border-l-2 border-accent-red">
-                                <p className="text-white font-bold">Tuned Society</p>
+                                <p className="text-white font-bold">Tuned Society (Namgyal Gurung, Sole Proprietor)</p>
+                                <p className="text-text-secondary text-sm mb-1">3rd Floor, 47/12, L.B. Gurung Residence, Road No. 3, Himali Shaheed Nagar, Siliguri, West Bengal 734001 · GSTIN 19DYQPG4179D1Z0</p>
                                 <a href="mailto:tunedsociety7@gmail.com" className="text-accent-red hover:text-white transition-colors">
                                     tunedsociety7@gmail.com
                                 </a>
